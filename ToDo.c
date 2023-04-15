@@ -13,7 +13,8 @@ struct {
 void inicializarNull(Tarea **arreglo, int cantidad);
 void cargarTareas(Tarea **arreglo, int cantidad, char *buff);
 void mostrarTarea(Tarea *arreglo);
-Tarea* BuscarTarea(Tarea **arreglo, int cantidad, char *comparar);
+Tarea* BuscaTareaPorPalabra(Tarea **arreglo, int cantidad, char *comparar);
+Tarea* BuscaTareaPorId(Tarea **arreglo, int cantidad, int comparar);
 
 int main(){
     //Declaracion variables
@@ -50,6 +51,7 @@ int main(){
             j++;
         }   
     }
+
     //Apartado 5
     puts("------ Tareas Realizadas ------");
     for (int i = 0; TareasRealizadas[i] != NULL && i < cantTareas; i++)
@@ -65,9 +67,19 @@ int main(){
         }
     }
 
-    //Apartado 7
+    //Apartado 6
     Tarea *buscada;
-    buscada = BuscarTarea(TareasRealizadas, cantTareas, "perro");
+    buscada = BuscaTareaPorId(TareasRealizadas, cantTareas, 2);
+    if (buscada != NULL)
+    {
+        puts("ENCONTRO");
+    } else
+    {
+        puts("NO ENCONTRO");
+    }
+
+    //Apartado 7
+    buscada = BuscaTareaPorPalabra(TareasRealizadas, cantTareas, "perro");
     if (buscada != NULL)
     {
         puts("ENCONTRO");
@@ -118,7 +130,18 @@ void mostrarTarea(Tarea *arreglo)
     printf("Descripcion: %s\n", arreglo->Descripcion);
     printf("Duracion: %d\n", arreglo->Duracion);  
 }
-Tarea* BuscarTarea(Tarea **arreglo, int cantidad, char *comparar)
+Tarea* BuscaTareaPorId(Tarea **arreglo, int cantidad, int comparar){
+    Tarea *aux = NULL;
+    for (int i = 0; i < cantidad && aux == NULL; i++)
+    {
+        if (arreglo[i]->TareaID == comparar)
+        {
+            aux = arreglo[i];
+        }
+    }
+    return aux;
+}
+Tarea* BuscaTareaPorPalabra(Tarea **arreglo, int cantidad, char *comparar)
 {
     Tarea *aux = NULL;
     for (int i = 0; i < cantidad && aux == NULL; i++)
