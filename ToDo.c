@@ -20,7 +20,7 @@ int main(){
     //Declaracion variables
     int cantTareas, respuesta, j=0, consultarID;
     Tarea **TareasPendientes, **TareasRealizadas, *buscada;
-    char *buff= (char *) malloc(sizeof(char) * 500), *consultarClave;
+    char *buff= (char *) malloc(sizeof(char) * 500);
 
     //Apartado 1
     puts("------º------º------º------º------º------");
@@ -73,9 +73,10 @@ int main(){
     scanf("%d", &consultarID);
     buscada = BuscaTareaPorId(TareasRealizadas, cantTareas, consultarID);
     mostrarTarea(buscada);
+    fflush(stdin);
     printf("Ingrese la palabra clave: ");
-    gets(consultarClave);
-    buscada = BuscaTareaPorPalabra(TareasRealizadas, cantTareas, consultarClave);
+    gets(buff);
+    buscada = BuscaTareaPorPalabra(TareasRealizadas, cantTareas, buff);
     mostrarTarea(buscada);
 
     //Libero reserva de memoria
