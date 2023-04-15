@@ -18,9 +18,9 @@ Tarea* BuscaTareaPorId(Tarea **arreglo, int cantidad, int comparar);
 
 int main(){
     //Declaracion variables
-    int cantTareas, respuesta, j=0;
-    Tarea **TareasPendientes, **TareasRealizadas;
-    char *buff= (char *) malloc(sizeof(char) * 500);
+    int cantTareas, respuesta, j=0, consultarID;
+    Tarea **TareasPendientes, **TareasRealizadas, *buscada;
+    char *buff= (char *) malloc(sizeof(char) * 500), *consultarClave;
 
     //Apartado 1
     puts("------º------º------º------º------º------");
@@ -67,26 +67,16 @@ int main(){
         }
     }
 
-    //Apartado 6
-    Tarea *buscada;
-    buscada = BuscaTareaPorId(TareasRealizadas, cantTareas, 2);
-    if (buscada != NULL)
-    {
-        puts("ENCONTRO");
-    } else
-    {
-        puts("NO ENCONTRO");
-    }
-
-    //Apartado 7
-    buscada = BuscaTareaPorPalabra(TareasRealizadas, cantTareas, "perro");
-    if (buscada != NULL)
-    {
-        puts("ENCONTRO");
-    } else
-    {
-        puts("NO ENCONTRO");
-    }
+    //Apartado 9
+    puts("------ Consultar Tarea ------");
+    printf("Ingrese el ID de la tarea: ");
+    scanf("%d", &consultarID);
+    buscada = BuscaTareaPorId(TareasRealizadas, cantTareas, consultarID);
+    mostrarTarea(buscada);
+    printf("Ingrese la palabra clave: ");
+    gets(consultarClave);
+    buscada = BuscaTareaPorPalabra(TareasRealizadas, cantTareas, consultarClave);
+    mostrarTarea(buscada);
 
     //Libero reserva de memoria
     free(buff);
