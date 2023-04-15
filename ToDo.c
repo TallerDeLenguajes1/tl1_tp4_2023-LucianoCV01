@@ -13,6 +13,7 @@ struct {
 void inicializarNull(Tarea **arreglo, int cantidad);
 void cargarTareas(Tarea **arreglo, int cantidad, char *buff);
 void mostrarTarea(Tarea *arreglo);
+Tarea* BuscarTarea(Tarea **arreglo, int cantidad, char *comparar);
 
 int main(){
     //Declaracion variables
@@ -64,6 +65,17 @@ int main(){
         }
     }
 
+    //Apartado 7
+    Tarea *buscada;
+    buscada = BuscarTarea(TareasRealizadas, cantTareas, "perro");
+    if (buscada != NULL)
+    {
+        puts("ENCONTRO");
+    } else
+    {
+        puts("NO ENCONTRO");
+    }
+
     //Libero reserva de memoria
     free(buff);
     for (int i = 0; i < cantTareas; i++)
@@ -105,4 +117,16 @@ void mostrarTarea(Tarea *arreglo)
     printf("TareaID: %d\n", arreglo->TareaID);
     printf("Descripcion: %s\n", arreglo->Descripcion);
     printf("Duracion: %d\n", arreglo->Duracion);  
+}
+Tarea* BuscarTarea(Tarea **arreglo, int cantidad, char *comparar)
+{
+    Tarea *aux = NULL;
+    for (int i = 0; i < cantidad && aux == NULL; i++)
+    {
+        if (strstr(arreglo[i]->Descripcion,comparar) != NULL)
+        {
+            aux = arreglo[i];
+        }
+    }
+    return aux;
 }
