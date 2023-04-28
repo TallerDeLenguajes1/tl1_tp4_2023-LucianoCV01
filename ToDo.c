@@ -9,7 +9,7 @@ struct {
     int Duracion; // entre 10 – 100
 }typedef Tarea;
 
-//Defino funciones y procedeiminetos
+//Defino funciones y procediminetos
 void inicializarNull(Tarea **arreglo, int cantidad);
 void cargarTareas(Tarea **arreglo, int cantidad, char *buff);
 void mostrarTarea(Tarea *arreglo);
