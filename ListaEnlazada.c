@@ -21,7 +21,7 @@ Lista crearNodo(Lista H, item x);
 Tarea crearTarea(int iter);
 void cargarTareas(Lista *H);
 void mostrarTarea(Tarea task);
-void liberarNodo(Lista nodo);
+void EliminarTarea(Lista nodo);
 Lista quitarNodo(Lista *H, item id);
 Lista insertarNodo(Lista H, Lista nodo);
 void estatusTarea(Lista *H, Lista *L);
@@ -32,11 +32,12 @@ Lista borrar(Lista H);
 
 int main(){
     //Defino listas
-    Lista TareasPendientes, TareasRealizadas;
+    Lista TareasPendientes, TareasRealizadas, TareasEnProceso;
 
     //Creo listas vacias
     TareasPendientes = crearListaVacia();
     TareasRealizadas = crearListaVacia();
+    TareasEnProceso = crearListaVacia();
 
     //Cargo tareas
     cargarTareas(&TareasPendientes);
@@ -119,7 +120,7 @@ void mostrarTarea(Tarea task){
     printf("Descripcion: %s\n", task.Descripcion);
     printf("Duracion: %d\n", task.Duracion); 
 }
-void liberarNodo(Lista nodo){
+void EliminarTarea(Lista nodo){
     free(nodo);
 }
 
